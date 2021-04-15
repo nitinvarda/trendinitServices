@@ -7,7 +7,9 @@ const admin ={
         try{
             const signInAdmin = await firebase.auth().signInWithEmailAndPassword(email,password)
             const result = signInAdmin.user
-            return result
+            const getUserDetails = await firebaseApi.users.where("userId","==",`${result.uuid}`).get()
+            console.log(getUserDetails)
+            return getUserDetails
 
         }
         catch(err){
