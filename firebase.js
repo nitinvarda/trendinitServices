@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 
 
-
+console.log("this is submoudle test")
 
 
 // const firebaseConfig = {
