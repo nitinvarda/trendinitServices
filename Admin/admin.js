@@ -20,7 +20,8 @@ const admin ={
             const result = createAdmin.user
 
             const addToCollection = await firebaseApi.users.add({
-                username
+                username,
+                userId:result.uid
             })
 
             return result
