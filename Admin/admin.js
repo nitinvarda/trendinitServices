@@ -2,7 +2,7 @@ import firebase,{firebaseApi} from '../firebase.js'
 
 
 
-export const admin ={
+const admin ={
     login:async(email,password)=>{
         try{
             const signInAdmin = await firebase.auth().signInWithEmailAndPassword(email,password)
@@ -14,10 +14,15 @@ export const admin ={
             throw err
         }
     },
-    register:async(email,password)=>{
+    register:async(email,password,username)=>{
         try{
             const createAdmin = await firebase.auth().createUserWithEmailAndPassword(email,password)
             const result = createAdmin.user
+
+            const addToCollection = await firebaseApi.users.add({
+                username
+            })
+
             return result
         }
         catch(err){
@@ -25,3 +30,5 @@ export const admin ={
         }
     }
 }
+
+export default admin

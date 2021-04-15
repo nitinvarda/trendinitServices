@@ -2,7 +2,7 @@ import {firebaseApi} from '../firebase.js'
 
 
 
-export const articles = {
+const articles = {
     create:async()=>{
         try{
 
@@ -40,3 +40,5 @@ export const articles = {
 
     }
 }
+
+export default articles
