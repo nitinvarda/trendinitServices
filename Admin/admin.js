@@ -26,7 +26,7 @@ const admin ={
                 displayName:username
             })
             
-            const currentUser = await firebase.auth().currentUser()
+            const currentUser = await firebase.auth().currentUser
             // const addToCollection = await firebaseApi.users.add({
             //     username,
             //     userId:result.uid
