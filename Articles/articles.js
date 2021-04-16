@@ -29,6 +29,9 @@ const articles = {
     },
     read:async()=>{
         try{
+            const getArticles = await firebaseApi.articles.get()
+            const articles = getArticles.docs.map(doc=>({id:doc.id,...doc.data()}))
+            return articles
 
         }
         catch(err){
