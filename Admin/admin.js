@@ -22,12 +22,21 @@ const admin ={
             const createAdmin = await firebase.auth().createUserWithEmailAndPassword(email,password)
             const result = createAdmin.user
 
-            const addToCollection = await firebaseApi.users.add({
-                username,
-                userId:result.uid
+            const updateInfo = result.updateProfile({
+                displayName:username
             })
+            
+            const currentUser = await firebase.auth().currentUser()
+            // const addToCollection = await firebaseApi.users.add({
+            //     username,
+            //     userId:result.uid
+            // })
 
-            return result
+            return {
+                uid:currentUser.uid,
+                username:currentUser.displayName,
+                email:currentUser.email
+            }
         }
         catch(err){
             throw err
