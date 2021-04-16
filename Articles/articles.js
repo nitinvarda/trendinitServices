@@ -16,7 +16,7 @@ const articles = {
                 desc:details.desc,
                 category: details.category,
                 image:imageUrl,
-                createdAt:firebase.firestore.FieldValue.serverTimestamp()
+                createdAt:new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
             })
 
             return "added successfully"
