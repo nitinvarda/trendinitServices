@@ -29,6 +29,8 @@ const articles = {
     },
     read:async()=>{
         try{
+            var user = firebase.auth().currentUser;
+            console.log(user)
             const getArticles = await firebaseApi.articles.get()
             const articles = getArticles.docs.map(doc=>({id:doc.id,...doc.data()}))
             return articles
