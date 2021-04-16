@@ -37,7 +37,7 @@ const admin ={
 
             return {
                 uid:result.uid,
-                username:result.displayName,
+                username:username,
                 email:result.email
             }
         }
