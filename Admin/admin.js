@@ -29,16 +29,16 @@ const admin ={
                 displayName:username
             })
             
-            const currentUser = await firebase.auth().currentUser
+            
             // const addToCollection = await firebaseApi.users.add({
             //     username,
             //     userId:result.uid
             // })
 
             return {
-                uid:currentUser.uid,
-                username:currentUser.displayName,
-                email:currentUser.email
+                uid:result.uid,
+                username:result.displayName,
+                email:result.email
             }
         }
         catch(err){
