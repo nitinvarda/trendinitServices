@@ -3,6 +3,20 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
+
+const searchFilter = {
+    ascending: (value, startAt) => ascending(value, startAt),
+    descending: (value, startAt) => descending(value, startAt),
+}
+
+const ascending = (value, startAt = 0) => {
+    return `.orderBy("${value}").startAt(${startAt})`
+}
+
+const descending = (value, startAt = 0) => {
+    return `.orderBy("${value}", "desc")`
+}
+
 const articles = {
     create:async(details)=>{
         try{
@@ -76,8 +90,8 @@ const articles = {
             queryString += ".get()"
 
             console.log(queryString)
-            const result = new Function("FirebaseApi", `return ${queryString} `)
-            const collectionData = await result(FirebaseApi)
+            const result = new Function("firebaseApi", `return ${queryString} `)
+            const collectionData = await result(firebaseApi)
             const map = collectionData.docs.map(doc => {
                 const id = doc.id
                 return { id, ...doc.data() }
