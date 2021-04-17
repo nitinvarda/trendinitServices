@@ -23,7 +23,7 @@ const articles = {
 
         }
         catch(err){
-            throw err
+            throw {message:err}
         }
 
     },
@@ -37,7 +37,7 @@ const articles = {
 
         }
         catch(err){
-            throw err
+            throw {message:err}
         }
 
     },
@@ -46,7 +46,7 @@ const articles = {
 
         }
         catch(err){
-            throw err
+            throw {message:err}
         }
 
     },
@@ -55,9 +55,40 @@ const articles = {
 
         }
         catch(err){
-            throw err
+            throw {message:err}
         }
 
+    },
+    search:async(options)=>{
+        try{
+            let queryString = 'firebaseApi.articles'
+            options.keyword && options.keyword.map(async (key) => {
+                queryString += `.where("${key[0]}", "${key[1]}", "${key[2]}")`
+            })
+            if (options.order) {
+
+                const orderBy = searchFilter[options.order](options.orderBy, options.startAt)
+                console.log(orderBy)
+                queryString += orderBy || `.orderBy("recipe.name")`
+            }
+
+            queryString += options.limit ? `.limit(${options.limit})` : `.limit(15)`
+            queryString += ".get()"
+
+            console.log(queryString)
+            const result = new Function("FirebaseApi", `return ${queryString} `)
+            const collectionData = await result(FirebaseApi)
+            const map = collectionData.docs.map(doc => {
+                const id = doc.id
+                return { id, ...doc.data() }
+            })
+            console.log(map)
+            return map
+        }
+        catch(err){
+            throw {message:err}
+
+        }
     }
 }
 
