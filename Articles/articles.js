@@ -75,7 +75,7 @@ const articles = {
     },
     getById:async(id)=>{
         try{
-            const getArticles = firebaseApi.articles.get()
+            const getArticles = await firebaseApi.articles.get()
             const getArticleById = getArticles.docs.filter(doc=>doc.id === id)
             return getArticleById
 
