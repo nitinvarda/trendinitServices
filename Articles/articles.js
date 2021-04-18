@@ -104,7 +104,7 @@ const articles = {
                 queryString += orderBy || `.orderBy("recipe.name")`
             }
 
-            queryString += options.limit ? `.limit(${options.limit})` : `.limit(15)`
+            queryString += options.limit ? `.limit(${options.limit})` : `.limit(12)`
             queryString += ".get()"
 
             console.log(queryString)
