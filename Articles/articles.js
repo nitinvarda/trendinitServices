@@ -25,6 +25,7 @@ const articles = {
 
             const imageUrl = await storageRef.child(`images/${details.articleImage.name}`).getDownloadURL()
             const currentUser = await firebase.auth().currentUser
+            const timeStamp = firebase.firestore.FieldValue.serverTimestamp
             const createArticle = await firebaseApi.articles.add({
                 title:details.title,
                 by: currentUser.displayName,
@@ -32,7 +33,8 @@ const articles = {
                 category: details.category,
                 image:imageUrl,
                 imageName:details.articleImage.name,
-                createdAt:new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+                createdAt:timeStamp()
+                // createdAt:new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
             })
 
             return "added successfully"
