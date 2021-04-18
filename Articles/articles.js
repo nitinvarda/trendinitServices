@@ -47,7 +47,7 @@ const articles = {
         try{
             var user = firebase.auth().currentUser;
             console.log(user)
-            const getArticles = await firebaseApi.articles.get()
+            const getArticles = await firebaseApi.articles.orderBy(firebase.firestore.FieldPath.documentId()).get()
             const articles = getArticles.docs.map(doc=>({id:doc.id,...doc.data()}))
             return articles
 
