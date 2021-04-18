@@ -24,9 +24,10 @@ const articles = {
             const uploadImage = await articleImage.put(details.articleImage)
 
             const imageUrl = await storageRef.child(`images/${details.articleImage.name}`).getDownloadURL()
+            const currentUser = await firebase.auth().currentUser
             const createArticle = await firebaseApi.articles.add({
                 title:details.title,
-                by: details.by,
+                by: currentUser.displayName,
                 desc:details.desc,
                 category: details.category,
                 image:imageUrl,
