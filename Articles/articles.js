@@ -30,6 +30,7 @@ const articles = {
                 desc:details.desc,
                 category: details.category,
                 image:imageUrl,
+                imageName:details.articleImage.name,
                 createdAt:new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
             })
 
@@ -66,6 +67,7 @@ const articles = {
     },
     delete:async(id)=>{
         try{
+            const deleteImage = await storageRef.child(`images/${imageName}`).delete()
             const deleteArticle = await firebaseApi.articles.doc(id).delete()
             return 'deleted'
 
@@ -75,7 +77,7 @@ const articles = {
         }
 
     },
-    getById:async(id)=>{
+    getById:async(id,imageName)=>{
         try{
             const getArticles = await firebaseApi.articles.doc(id).get()
             // const getArticleById = getArticles.docs.filter(doc=>doc.id === id)
