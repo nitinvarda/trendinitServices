@@ -64,8 +64,10 @@ const articles = {
         }
 
     },
-    delete:async()=>{
+    delete:async(id)=>{
         try{
+            const deleteArticle = await firebaseApi.articles.doc(id).delete()
+            return 'deleted'
 
         }
         catch(err){
