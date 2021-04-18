@@ -65,7 +65,7 @@ const articles = {
         }
 
     },
-    delete:async(id)=>{
+    delete:async(id,imageName)=>{
         try{
             const deleteImage = await storageRef.child(`images/${imageName}`).delete()
             const deleteArticle = await firebaseApi.articles.doc(id).delete()
