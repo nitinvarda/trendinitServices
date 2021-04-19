@@ -17,18 +17,6 @@ const firebaseConfig = {
 
 console.log("this is submoudle test")
 
-
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAKVceYDmJUot1sh0wPeqeHS47vOTSYuYI",
-//     authDomain: "trendinit-28f34.firebaseapp.com",
-//     projectId: "trendinit-28f34",
-//     storageBucket: "trendinit-28f34.appspot.com",
-//     messagingSenderId: "978489005268",
-//     appId: "1:978489005268:web:472070eef2accee7619741"
-// };
-
-
-
 firebase.initializeApp(firebaseConfig);
 
 
