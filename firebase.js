@@ -53,7 +53,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const firestore = firebase.firestore()
-const storage = firebase.storage().ref()
+const storageRef = firebase.storage().ref()
 const auth =()=> firebase.auth()
 
 
@@ -66,4 +66,4 @@ const firebaseApi = {
 }
 
 export default firebase
-export {firebaseApi,storage,auth}
+export {firebaseApi,storageRef,auth}
