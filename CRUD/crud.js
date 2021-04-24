@@ -3,6 +3,7 @@ import {firebaseApi} from '../firebase.js'
 
 
 
+
 export const CRUDoperations = {
     create: async (collectionName, value) => {
         

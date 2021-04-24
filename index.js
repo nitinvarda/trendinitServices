@@ -1,6 +1,6 @@
 import admin from './Admin/admin'
 import articles from './Articles/articles'
-import { firebaseApi } from './firebase'
+
 
 
 

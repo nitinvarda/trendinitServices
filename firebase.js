@@ -1,8 +1,8 @@
 import firebase from 'firebase'
 import '@firebase/storage'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
-dotenv.config()
+// dotenv.config()
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -13,6 +13,7 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID
 };
 
+console.log(firebaseConfig)
 
 
 console.log("this is submoudle test")
@@ -22,6 +23,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const firestore = firebase.firestore()
+
 const storageRef = firebase.storage().ref()
 
 
