@@ -1,4 +1,4 @@
-import firebase,{firebaseApi,auth} from '../firebase.js'
+import {auth} from '../firebase.js'
 
 
 
@@ -25,7 +25,7 @@ const admin ={
             const createAdmin = await auth().createUserWithEmailAndPassword(email,password)
             const result = createAdmin.user
 
-            const updateInfo = result.updateProfile({
+            result.updateProfile({
                 displayName:username
             })
             

@@ -21,12 +21,12 @@ const articles = {
     create:async(details)=>{
         try{
             const articleImage = storageRef.child(`images/${details.articleImage.name}`)
-            const uploadImage = await articleImage.put(details.articleImage)
+            await articleImage.put(details.articleImage)
 
             const imageUrl = await storageRef.child(`images/${details.articleImage.name}`).getDownloadURL()
             const currentUser = await firebase.auth().currentUser
             const timeStamp = firebase.firestore.FieldValue.serverTimestamp
-            const createArticle = await firebaseApi.articles.add({
+            await firebaseApi.articles.add({
                 title:details.title,
                 by: currentUser.displayName,
                 desc:details.desc,
@@ -41,7 +41,8 @@ const articles = {
 
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
         }
 
     },
@@ -55,7 +56,8 @@ const articles = {
 
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
         }
 
     },
@@ -64,19 +66,21 @@ const articles = {
 
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
         }
 
     },
     delete:async(id,imageName)=>{
         try{
-            const deleteImage = await storageRef.child(`images/${imageName}`).delete()
-            const deleteArticle = await firebaseApi.articles.doc(id).delete()
+            await storageRef.child(`images/${imageName}`).delete()
+            await firebaseApi.articles.doc(id).delete()
             return 'deleted'
 
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
         }
 
     },
@@ -88,7 +92,8 @@ const articles = {
 
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
         }
     },
     search:async(options)=>{
@@ -108,6 +113,7 @@ const articles = {
             queryString += ".get()"
 
             console.log(queryString)
+            // eslint-disable-next-line no-new-func 
             const result = new Function("firebaseApi", `return ${queryString} `)
             const collectionData = await result(firebaseApi)
             const map = collectionData.docs.map(doc => {
@@ -118,7 +124,8 @@ const articles = {
             return map
         }
         catch(err){
-            throw {message:err}
+            const errorMessage = err.message
+            throw errorMessage
 
         }
     }

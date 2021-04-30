@@ -53,6 +53,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const firestore = firebase.firestore()
+console.log(firebase.auth())
 const storageRef = firebase.storage().ref()
 const auth =()=> firebase.auth()
 
